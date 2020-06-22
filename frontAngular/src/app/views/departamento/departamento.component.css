@@ -1,0 +1,18 @@
+.miborde{
+	border: #218CE0 1px solid;
+	border-left: #218CE0 10px solid ;
+	border-radius: 10px;
+}
+
+.sinFondo{
+	position: relative;
+	left: -15vw;
+	top:-2vh;
+}
+
+
+.fondoDep{
+	position: relative;
+	left: -5vw;
+	top:-8vh;
+}

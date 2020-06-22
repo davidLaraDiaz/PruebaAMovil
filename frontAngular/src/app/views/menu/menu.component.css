@@ -1,0 +1,12 @@
+
+
+.tituloMenu{
+	color: white;
+}
+
+.tituloMenu:hover{
+	transition: 0.5s;
+	color: cyan;
+}
+
+

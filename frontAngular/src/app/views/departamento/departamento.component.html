@@ -1,0 +1,155 @@
+
+
+
+<div class="card">
+	
+
+	
+
+	<div class="card-header">
+		<h1>Departamentos</h1>
+		<span>Lista de despartamentos para agregar a la base de datos</span>
+
+		<div class="row p-4">
+			<form class="col-7">
+				<div class="input-group input-group">
+				  <input type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" placeholder="Buscar">
+				 
+				   <button type="submit" class="btn btn-outline-info">
+				    	<i class="fa fa-search" aria-hidden="true"></i>
+				    </button>
+				</div>
+			</form>
+			<div class="col-4">
+				<!-- Button to Open the Modal -->
+				<button type="button" class="btn btn-success" data-toggle="modal" data-target="#departamentoModal">
+				  Agregar Departamento
+				</button>
+
+				<!-- The Modal -->
+				<div class="modal" id="departamentoModal">
+				  <div class="modal-dialog">
+				    <div class="modal-content">
+
+				      <!-- Modal body -->
+				      <div class="modal-body p-5">
+				      			<div class="fondoDep">
+						    		<span class="bg-success text-white p-3">
+						        		Nuevo Departamento
+						      		</span>
+						    	</div>
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+				      	<p class="text-secondary"> Por favor, digite toda la informacion solicitada para crear un departamento</p>
+
+				        <form [formGroup]="formDep" (ngSubmit)="guardarForm(formDep.value)" class="align-items-center">
+				        	<label for="nombre" class="font-weight-bold">Nombre Departamento</label>
+				        	<div class="input-group input-group">
+							  <input name="nombre" type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" placeholder="Ejemplo: Santander" formControlName="nombre">
+							 
+							  <div class="input-group-append">
+							    <span class="input-group-text" id="basic-addon2">
+							    	<i class="fa fa-globe" aria-hidden="true"></i>
+							    </span>
+							  </div>
+							 
+							</div>
+
+							<br>
+							<label for="codigo_dane" class="font-weight-bold">Código Dane</label>
+				        	<div class="input-group input-group">
+							  <input name="codigo_dane" type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" placeholder="Ejemplo: 232323" formControlName="codigo_dane">
+							 
+							  <div class="input-group-append">
+							    <span class="input-group-text" id="basic-addon2">
+							    	<i class="fa fa-list"></i>
+							    </span>
+							  </div>
+							</div>
+								
+							<br><br>
+							<button type="submit" [disabled]="formDep.invalid" class="btn btn-outline-success form-control">
+							Crear Departamento</button>
+							
+
+				        </form>
+				      </div>
+
+				     
+				    </div>
+				  </div>
+				</div>
+			</div>
+		</div>
+		
+
+	</div>
+
+	<div class="card-body row">
+
+		<div *ngFor='let dep of departamentos' class="col-6">
+			
+			<div class="align-items-center row m-3 miborde">
+				
+				<div class="col-md-9 p-3">
+					<h2 class="card-title">{{ dep.nombre | uppercase }}</h2>
+				  	<div class="card-subtitle">
+				    	<p>Cod: {{ dep.codigo_dane }}</p>
+				  	</div>
+				</div>
+				<div class="col-md-3 row">
+					<div class="col-md-6 btn text-primary">
+						<i  class="fa fa-lg fa-pencil"
+							aria-hidden="true"> 
+								
+						</i>
+					</div>
+
+					<div class="col-md-6 btn text-danger"
+						(click)="selectionDep(dep.nombre, dep.codigo_dane)">
+						<i 	class="fa fa-lg fa-trash"
+						 	data-toggle="modal"
+						 	data-target="#modalDelete"
+						 	aria-hidden="true">
+						</i>
+						
+						<!-- The Modal -->
+						<div class="modal" id="modalDelete">
+						  <div class="modal-dialog">
+						    <div class="modal-content">
+						    	
+						      <!-- Modal body -->
+						      <div class="modal-body text-secondary m-4">
+						      	<div class="sinFondo">
+						    		<span class="bg-danger text-white p-3">
+						        		Borrar Departamento
+						      		</span>
+						    	</div>
+						      	<button type="button"
+						      		class="close"
+						      		data-dismiss="modal">&times;
+						      	</button>
+						      	<p>Esta a punto de eliminar el departamento</p>
+								<p>{{ nameSelect | uppercase }}.</p>
+								<p>¿Desea continuar?</p>
+						        <button 
+									class="btn btn-danger btn-lg" 
+						        	(click)="eliminar(dep.codigo_dane)">
+						        	Eliminar Departamento
+						        </button>
+						      </div>
+						    </div>
+						  </div>
+						</div>
+
+					</div>
+
+
+				</div>
+
+			</div>
+			
+
+	</div>
+</div>
+
+
